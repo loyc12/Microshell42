@@ -6,7 +6,7 @@
 /*   By: llord <llord@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 13:35:56 by llord             #+#    #+#             */
-/*   Updated: 2023/06/19 14:05:10 by llord            ###   ########.fr       */
+/*   Updated: 2023/06/19 14:06:01 by llord            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	ft_exe(char **av, int i, int fd_in, char **ev)
 //microshell itself
 int	main(int ac, char **av, char **ev)
 {
-	int	fd_pipe[2]; //												pipe exit and entry
+	int	fd_pipe[2]; //											pipe exit and entry
 	int	fd_in; //												input fd (STDIN or pipe exit)
 	int	i; //													arg incrementer
 	int j; //													loop incrementer
@@ -95,10 +95,10 @@ int	main(int ac, char **av, char **ev)
 			}
 			else if (!strcmp(av[i], "|")) //									if breakpoint is "|"
 			{
-				pipe(fd_pipe); //															init pipes
+				pipe(fd_pipe); //														init pipes
 				if (fork() == 0) //														fork; if child
 				{
-					dup2(fd_pipe[1], STDOUT_FILENO); //												sets output to pipe entry
+					dup2(fd_pipe[1], STDOUT_FILENO); //											sets output to pipe entry
 					close(fd_pipe[0]);
 					close(fd_pipe[1]);
 					if (ft_exe(av, i, fd_in, ev)) //											exec in fork
