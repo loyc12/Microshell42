@@ -6,7 +6,7 @@
 /*   By: llord <llord@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 13:35:56 by llord             #+#    #+#             */
-/*   Updated: 2023/06/19 13:55:01 by llord            ###   ########.fr       */
+/*   Updated: 2023/06/19 14:05:10 by llord            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,9 @@ int	main(int ac, char **av, char **ev)
 
 		while (av[i] && strcmp(av[i], ";") && strcmp(av[i], "|")) //	counts args until next breakpoint
 			i++;
+
+//		write_error("Running command : ", av[0]); //	0======== DEBUG ========0
+
 		if (i != 0) //													if a command needs to be ran
 		{
 			if (strcmp(av[0], "cd") == 0) //									if first arg == "cd"
@@ -75,7 +78,7 @@ int	main(int ac, char **av, char **ev)
 				else if (chdir(av[1]) != 0)
 					write_error("error: cd: cannot change directory to ", av[1]); //	if unable to use chdir; ERROR
 			}
-			else if ((!av[i] || !strcmp(av[i], ";"))) //						if breakpoint is NULL or ";"
+			else if (!av[i] || !strcmp(av[i], ";")) //						if breakpoint is NULL or ";"
 			{
 				if (fork() == 0) //														fork; if child
 				{
@@ -109,7 +112,8 @@ int	main(int ac, char **av, char **ev)
 				}
 			}
 		}
-		j += i + 1; //													skips breakpoint at av[i]
+		i += 1;
+		j += i; //													skips breakpoint at av[i]
 	}
 	close(fd_in);
 	return (0);
