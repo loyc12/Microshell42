@@ -6,7 +6,7 @@
 /*   By: llord <llord@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 13:35:56 by llord             #+#    #+#             */
-/*   Updated: 2023/06/19 14:06:01 by llord            ###   ########.fr       */
+/*   Updated: 2023/06/30 11:34:09 by llord            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,3 +118,92 @@ int	main(int ac, char **av, char **ev)
 	close(fd_in);
 	return (0);
 }
+
+
+
+/*
+
+smaller (note) version
+
+
+unistd
+stdio
+string
+sys/wait
+
+
+in = 1
+out = 0
+
+fork_exec(av, ev, fd_io)
+{
+	if (fork)
+	{
+		dup2(fd_io[out], stdout)
+		dup2(fd_io[in], stdin)
+		close(fd_io[out])
+		close(fd_io[in])
+
+		execve(av[0], av, ev)
+		error
+		exit(1)
+	}
+	else
+	{
+		close (fd_io[in])
+		while (waitpid(-1, NULL, WUNTRACED));
+		close (fd_io[out])
+	}
+}
+
+main (ac, av, ev)
+{
+	int fd_pipe[2]
+	int fd_io[2]
+	int i = 1
+	int loop = 1
+
+	fd_io[out] = dup(stdout)
+	fd_io[in] = dup(stdin)
+
+	while (loop < ac)
+	{
+		av = &(av[i])
+		i = 0
+
+		while (!breakpoint)
+			i++
+
+		if (cd)
+		{
+			if (i != 2)
+				error
+			if (chdir(av[0]))
+				error
+		}
+		else if (NULL or ;)
+		{
+			av[i] = NULL
+
+			fd_io[out] = dup(stdout)
+			fork_exec(av, ev, fd_io)
+			fd_io[in] = dup(stdin)
+		}
+		else if (|)
+		{
+			pipe(fd_pipe)
+			av[i] = NULL
+
+			fd_io[out] = fd_pipe[in]
+			fork_exec(av, ev, fd_io)
+			fd_io[in] = fd_pipe[out]
+		}
+		i += 1
+		loop += i
+	}
+
+	close(fd_io[out])
+	close(fd_io[in])
+	exit (0)
+}
+*/
