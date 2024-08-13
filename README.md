@@ -5,11 +5,11 @@ This exam has 1 question, microshell:
 - [Microshell.c](https://github.com/pasqualerossi/42-School-Exam-Rank-04/blob/main/microshell.c)
 - [Microshell.h](https://github.com/pasqualerossi/42-School-Exam-Rank-04/blob/main/microshell.h)
 
-if you can make this code shorter, but readable, let me know!
+if you can make this code shorter, whilst still readable, let me know!
 
 <br>
 
-## Excepted Files
+## Expected Files
 
 - microshell.c
 
@@ -17,7 +17,7 @@ if you can make this code shorter, but readable, let me know!
 
 ## Subject Text
 
-Allowed functions: 
+Allowed functions:
 ```
 malloc, free, write, close, fork, waitpid, signal, kill, exit, chdir, execve, dup, dup2, pipe, strcmp, strncmp
 ```
